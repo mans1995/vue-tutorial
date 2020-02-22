@@ -11,6 +11,6 @@ npm run dev
 mv .env.example .env
 php artisan key:generate
 php artisan cache:clear
-php artisan congif:clear
+php artisan config:clear
 php artisan serve
 ```
