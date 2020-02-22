@@ -554,8 +554,8 @@ export default {
 <br/>
 <br/>
 <h2>Going further</h2>
-<p>Vue.js proposes an excellent guide: <a href="https://Vue.js.org/v2/guide/" target="_blank">https://Vue.js.org/v2/guide/</a></p>
-<p>Every Vue.js instance stands into a virtual DOM and has a lifecycle in it. You can learn more about it on: <a href="https://Vue.js.org/v2/guide/instance.html">https://Vue.js.org/v2/guide/instance.html</a></p>
+<p>Vue.js proposes an excellent guide: <a href="https://vuejs.org/v2/guide/" target="_blank">https://vuejs.org/v2/guide/</a></p>
+<p>Every Vue.js instance stands into a virtual DOM and has a lifecycle in it. You can learn more about it on: <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">https://vuejs.org/v2/guide/instance.html</a></p>
 <br/>
 </div>
 
