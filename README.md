@@ -8,5 +8,9 @@ To make it run locally simple run those commands:
 composer install
 npm install
 npm run dev
+mv .env.example .env
+php artisan key:generate
+php artisan cache:clear
+php artisan congif:clear
 php artisan serve
 ```
