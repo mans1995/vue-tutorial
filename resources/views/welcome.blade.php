@@ -503,7 +503,6 @@ export default {
             categoryMessage: '10 last friends',
         }
     },
-    mounted() {},
     methods: {
         addName() {
             this.friends.push({
