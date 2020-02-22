@@ -1,6 +1,6 @@
 ## Laravel & Vue.js: Quickstart
 
-This project is a simple tutorial integrate Vue.js to Laravel and learn the basics of the Vue.js framework.
+This project is a simple tutorial to integrate Vue.js to Laravel and learn the basics of the Vue.js framework.
 
 To make it run locally simple run those commands:
 
