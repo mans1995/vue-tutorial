@@ -67,7 +67,7 @@ After that you'll need, in the same file, to add the code that will instantiate 
 }</code></pre>
 Like you can see, Vue.js is instanciated into an element with the id <b>app</b>. Therefore, you need to add this element 
 to the <b>/resources/views/welcome.blade.php</b> view. Before that, let's clean this view and delete the fonts and styles in the <b>head</b> 
-element and all the content of the body. Now you can add this in the <b>body</b> element :
+element and all the content of the <b>body</b> element. Now you can add this in the <b>body</b> element :
 <pre><code class="language-html">&lt;div id="app" style="text-align:center;margin-top:2%;margin-bottom:2%;"&gt;
 
 &lt;/div&gt;
@@ -79,7 +79,7 @@ of this tutorial.
 <h2>Adding a component</h2>
 <br/>
 <div>
-Let's create a <b>components</b> folder in the <b>/resources/js/</b> directory and a new file in called <b>Face.Vue</b> in this folder. 
+Let's create a <b>components</b> folder in the <b>/resources/js/</b> directory and a new file in called <b>Face.vue</b> in this folder. 
 Then let's add a basic structure in this file:
 </div>
 <pre>
@@ -106,10 +106,13 @@ do that by adding the following line in the <b>/resources/js/app.js</b> file:
 <pre><code class="language-js">Vue.component('face', require('./components/Face.vue').default);</code></pre>
 <p>This component should be added between the Vue.js declaration and its instanciation. Therefore the end of your 
 <b>/resources/js/app.js</b> file should look like this:
-<pre><code class="language-js">window.Vue = require('vue');
+<pre><code class="language-js">// Declaration
+window.Vue = require('vue');
 
+// New component
 Vue.component('face', require('./components/Face.vue').default);
 
+// Instanciation
 window.onload = function(e) {
     const app = new Vue({
         el: '#app'
@@ -117,7 +120,7 @@ window.onload = function(e) {
 }</code></pre>
 <p>Every new component should be added this way.</p>
 <br/>
-<p>Don't forget to add the script to the <b>head</b> element of the <b>welcome.blade.php</b> view:</p>
+<p>Don't forget to add the script into the <b>head</b> element of the <b>welcome.blade.php</b> view:</p>
 <pre><code class="language-html">&lt;script src="&lt;?php echo asset('/js/app.js')?&gt;"&gt;&lt;/script&gt;</code></pre>
 <br/>
 <p>Before adding the component to the view, we'll make it actually do something. For the moment, it's totally empty so let's make 
@@ -131,7 +134,7 @@ show a little text by first adding the following code in the <b>template</b> and
 &lt;script&gt;</code><code class="language-js">
 export default {
     props: {
-        text: String
+        text: String,
     }
 }</code>
 <code class="language-html">&lt;/script&gt;</code></pre>
@@ -157,7 +160,8 @@ show this:</p>
     <c-basic text="Hello world!" style="margin-top:2%;margin-bottom:2%;"></c-basic>
 </div>
 <br/>
-<p> Like you can see, the curly braces replace the text property by the name given in the view. Congratulations! You just created 
+<p> Like you can see, the curly braces in the Face.vue template replace the text property by the value 'Hello world!' passed through 
+the <b>face</b> component in the view. Congratulations! You just created 
 your first Vue.js component... now comes the fun part!</p>
 <br/>
 <br/>
@@ -209,7 +213,7 @@ Let's also put the following style in the <b>Face.vue</b> file:
         color: darkgreen;
     }</code><code class="language-html">
 &lt;/style&gt;</code></pre>
-<p>The <b>root</b>, <b>name-input</b>, <b>friend</b> and <b>enemy</b> ids will appear later in the template.</p>
+<p>Don't worry! The <b>root</b>, <b>name-input</b>, <b>friend</b> and <b>enemy</b> ids will appear later in the template.</p>
 <br/>
 <br/>
 <h2>Building our app</h2>
@@ -227,7 +231,7 @@ Let's also put the following style in the <b>Face.vue</b> file:
 &lt;script&gt;</code><code class="language-js">
 export default {
     props: {
-        text: String
+        text: String,
     },
     data() {
         return {
@@ -242,7 +246,7 @@ export default {
     <li>in the script, added a function <b>data</b> that returns a variable <b>name</b> which is an empty <i>String</i>,</li>
     <li>in the template, added a new variable inside curly braces, followed by an exclamation point. The variable inside the <b>data</b> is read like
     the properties. However, it cannot be passed through the component in the view. That's why we gave it a default value. This <b>name</b>
-    variable is thus intern for the <b>face</b> component,</li>
+    variable is thus intern to the <b>face</b> component,</li>
     <li>in the template, added a <b>div</b> with the id <b>name-input</b> that contains an <b>input</b> with a <b>v-model</b> attribute 
     that refers to the <b>name</b> variable</li>
 </ul>
@@ -254,7 +258,7 @@ export default {
 <div style="text-align:center;border-style:solid;border-width:thin;border-color:grey;">
     <c-name text="Hello" style="margin-bottom:2%;min-height:10em;max-height:10em;overflow:scroll"></c-name>
 </div>
-<p>Every time you type something in the <b>input</b>, the <b>name</b> variable will be refreshed, which will update the view. This wil happen with all the 
+<p>Every time you type something in the <b>input</b>, the <b>name</b> variable will be refreshed, which will update the view. This will happen with all the 
 variables returned by the <b>data</b> function.
 <br/>
 <p>We'll now add more data. An <b>id</b> variable with a default value of 0, incremented whenever we add a new friend, will serve as an <b>id</b> giver to each 
@@ -279,7 +283,7 @@ and add it to our friends:</p>
 &lt;script&gt;</code><code class="language-js">
 export default {
     props: {
-        text: String
+        text: String,
     },
     data() {
         return {
@@ -300,6 +304,9 @@ export default {
     } 
 }</code>
 <code class="language-html">&lt;/script&gt;</code></pre>
+<br/>
+<p>Let's break this code down:</p>
+<br/>
 <p>The element with the <b>name-input</b> id has been changed:</p>
 <pre><code class="language-html">&lt;div id="name-input"&gt;
     &lt;input v-model="name"&gt;
@@ -338,7 +345,7 @@ will empty the <b>input</b>.The variables defined in the <b>data</b> can be acce
     <c-friends text="Hello" style="margin-bottom:2%;min-height:20em;max-height:20em;overflow:scroll"></c-friends>
 </div>
 <br/>
-<p>Those typical Vue.js attributes allow to put some javascript in the value assigned to them inside the double quotes. For example, if we just want to show 
+<p>Those typical Vue.js attributes, like <b>v-for</b>, allow to put some javascript in the value assigned to them inside the double quotes. For example, if we just want to show 
 the greetings for the 10 last friends that have been added, in the reverse order (the last friends are printed above the older ones) we can just replace the content 
 of the <b>v-for</b> attribute by the following one:
 <pre><code class="language-html">&lt;div 
@@ -351,11 +358,11 @@ of the <b>v-for</b> attribute by the following one:
     <c-friends-plus text="Hello" style="margin-bottom:2%;min-height:25em;max-height:25em;overflow:scroll"></c-friends-plus>
 </div>
 <br/>
-<p>Of course, Vue.js also proposes conditional attributes. As an example, we'll add <b>categoryMessage</b> <b>data</b> variable that will be showed in a 
-<b>h1</b>, <b>h2</b> or <b>p</b> element depending on what we want. To achieve that, you just need to add two new <b>props</b> next to <b>text</b>:
+<p>Of course, Vue.js also proposes conditional attributes. As an example, we'll add a <b>categoryMessage</b> <b>data</b> variable that will be showed in a 
+<b>h1</b>, <b>h2</b> or <b>p</b> element depending on what we want. To achieve that, you just need to add two new <b>props</b> next to the <b>text</b> prop:
 <pre><code class="language-js">h1: Boolean,
 h2: Boolean,</code></pre>
-<p>Add a new <b>data</b> variable :</p>
+<p>Add the new <b>data</b> variable :</p>
 <pre><code class="language-js">categoryMessage: '10 last friends',</code></pre>
 <p>And then add the three following line in the template, between the <b>div</b> with the <b>name-input</b> id and the loop-iterating <b>div</b>:</p>
 <pre><code class="language-html">&lt;h1 v-if="h1"&gt;</code><code class="language-js">@{{ categoryMessage }}</code><code class="language-html">&lt;/h1&gt;
@@ -370,13 +377,13 @@ h2: Boolean,</code></pre>
     element else it will be showed in a <b>p</b> element. The props here have the same name as the elements but it is not required.</li>
 </ul>
 <br/>
-<p>Here is the result we obtain if we add the <b>h2</b> attribute to the <b>face</b> component:</p>
+<p>Here is the result we obtain if we add the <b>h2</b> attribute to the <b>face</b> component in the view:</p>
 <div style="text-align:center;border-style:solid;border-width:thin;border-color:grey;">
     <c-friends-if text="Hello" h2 style="margin-bottom:2%;min-height:25em;max-height:25em;overflow:scroll"></c-friends-if>
 </div>
 <p>You can try with the <b>h1</b> attribute or even no attribute and see the difference.</p>
 <br/>
-<p>For the moment, we only have one column. We would like to have another column called 'All my friends' where there appear 
+<p>For the moment, we only have one column with the greetings of our 10 last friends. We would like to have another column called 'All my friends' where there appear 
 a little ASCII friend everytime a new friend is added. For that purpose, we'll add a new <b>data</b> variable simply called 
 <b>category</b> that will be the title of a second column. This title can be either a <b>h1</b>, <b>h2</b> or <b>p</b> element. 
 Therefore it will implement the same logic as the <b>categoryMessage</b> variable. We'll use bootstrap to get our two columns, 
@@ -432,9 +439,9 @@ Note that <b>i</b> does not iterate from 0 to the value of <b>id</b> - 1.</p>
 <pre><code class="language-js">category: 'All my friends',</code></pre>
 <br/>
 <p>There is only one step left to complete our app: make one ASCII friend on two become purple and the other become green. 
-To achieve this, we'll use the <b>id</b> attribute of the <p> element. Each HTML basic attribute like this one usually can only take a 
-<i>String</i> value. However, we've seen that using <b>v-bind:</b> or simply <b>:</b>before an attribute can make it contain JavaScript 
-conditional code that permits multiple possible <i>String</i> values. Therefore we can then add a personalized <b>id</b> attribute that will have the 
+To achieve this, we'll use the <b>id</b> attribute of the <b>p</b> element. Each HTML basic attribute like the <b>id</b> attribute usually can only take a 
+<i>String</i> value. However, we've seen that using '<b>v-bind:</b>'' or simply '<b>:</b>' before an attribute can make it contain JavaScript 
+code. That way, we can put a condition that permits multiple possible <i>String</i> values. Therefore we can then add a personalized <b>id</b> attribute that will have the 
 value <b>friend</b> or <b>enemy</b> depending on the value of <b>i</b>:</p>
 <pre><code class="language-html">&lt;div class="row"&gt;
     &lt;p 
@@ -446,8 +453,14 @@ value <b>friend</b> or <b>enemy</b> depending on the value of <b>i</b>:</p>
     &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 <br/>
-<p>We just need to add an <b>h1</b> title above our <b>face</b> component. Like you can see, its color 
-is not influenced by the style defined in the <b>face</b> component whose scope only apply to this component.</p>
+<p>Now we added an <b>id</b> value, we can go back to the view and add an <b>h1</b> title above our <b>face</b> component. Of course, its color 
+will not be influenced by the style defined in the <b>face</b> component whose scope only apply to this component. Here is the code inside the 
+<b>div app</b> in the <b>welcome.blade.php</b> view:</p>
+<pre><code class="language-html">&lt;h1 style="margin-top:2%;"&gt;FaceVue&lt;/h1&gt;
+&lt;face h2 text="Hello"&gt;&lt;/face&gt;</code></pre>
+
+
+
 <br/>
 <p>Here is the complete code for our <b>face</b> component:</p>
 <pre><code class="language-html">&lt;template&gt;
